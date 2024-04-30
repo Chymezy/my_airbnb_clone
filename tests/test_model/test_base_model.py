@@ -1,6 +1,5 @@
 import unittest
 from models import BaseModel
-
 """ 
 baseModel unit testing file
 """
