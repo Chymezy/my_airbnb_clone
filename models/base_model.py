@@ -5,7 +5,7 @@ This module defines the BaseModel class, which serves as the base class for all 
 
 import uuid
 from datetime import datetime
-from models import storage
+import models
 
 class BaseModel:
     """BaseModel class for other model classes to inherit from."""
@@ -30,7 +30,7 @@ class BaseModel:
             self.updated_at = current_time
 
             # Add a call to the method new(self) on storage
-            storage.new(self)
+            models.storage.new(self)
 
     def save(self):
         """Save BaseModel instance.
@@ -40,7 +40,7 @@ class BaseModel:
         self.updated_at = datetime.utcnow()
 
         # Call save(self) method of storage
-        storage.save()
+        models.storage.save()
 
     def to_dict(self):
         """Return dictionary representation of BaseModel instance.
@@ -53,3 +53,17 @@ class BaseModel:
         obj_dict['created_at'] = self.created_at.isoformat()
         obj_dict['updated_at'] = self.updated_at.isoformat()
         return obj_dict
+
+if __name__ == "__main__":
+    all_objs = storage.all()
+    print("-- Reloaded objects --")
+    for obj_id in all_objs.keys():
+        obj = all_objs[obj_id]
+        print(obj)
+
+    print("-- Create a new object --")
+    my_model = BaseModel()
+    my_model.name = "My_First_Model"
+    my_model.my_number = 89
+    my_model.save()
+    print(my_model)
