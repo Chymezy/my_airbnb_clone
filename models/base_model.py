@@ -9,7 +9,7 @@ import models
 
 class BaseModel:
     """BaseModel class for other model classes to inherit from."""
-    
+
     def __init__(self, *args, **kwargs):
         """Initialize BaseModel instance.
 
@@ -17,19 +17,20 @@ class BaseModel:
             args: Variable length argument list.
             kwargs: Arbitrary keyword arguments.
         """
-        self.id = str(uuid.uuid4())
-        current_time = datetime.utcnow()
-        self.created_at = current_time
-        self.updated_at = current_time
-
         if kwargs:
             for key, value in kwargs.items():
                 if key != '__class__':
                     if key in ('created_at', 'updated_at'):
                         value = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
-                    setattr(self, key, value)      
-        # Add a call to the method new(self) on storage
-        models.storage.new(self)
+                    setattr(self, key, value)
+        else:      
+            self.id = str(uuid.uuid4())
+            current_time = datetime.utcnow()
+            self.created_at = current_time
+            self.updated_at = current_time
+
+            # Add a call to the method new(self) on storage
+            models.storage.new(self)
 
     def save(self):
         """Save BaseModel instance.
@@ -54,7 +55,7 @@ class BaseModel:
         return obj_dict
 
 if __name__ == "__main__":
-    all_objs = models.storage.all()
+    all_objs = storage.all()
     print("-- Reloaded objects --")
     for obj_id in all_objs.keys():
         obj = all_objs[obj_id]
@@ -66,5 +67,3 @@ if __name__ == "__main__":
     my_model.my_number = 89
     my_model.save()
     print(my_model)
-    print(models.storage.all())
-    print(models.storage.save())
