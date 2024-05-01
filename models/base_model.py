@@ -27,10 +27,9 @@ class BaseModel:
                 if key != '__class__':
                     if key in ('created_at', 'updated_at'):
                         value = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
-                    setattr(self, key, value)
-        else:      
-            # Add a call to the method new(self) on storage
-            models.storage.new(self)
+                    setattr(self, key, value)      
+        # Add a call to the method new(self) on storage
+        models.storage.new(self)
 
     def save(self):
         """Save BaseModel instance.
@@ -68,3 +67,4 @@ if __name__ == "__main__":
     my_model.save()
     print(my_model)
     print(models.storage.all())
+    print(models.storage.save())
