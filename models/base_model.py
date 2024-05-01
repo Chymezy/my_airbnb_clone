@@ -9,7 +9,7 @@ import models
 
 class BaseModel:
     """BaseModel class for other model classes to inherit from."""
-
+    
     def __init__(self, *args, **kwargs):
         """Initialize BaseModel instance.
 
@@ -17,6 +17,11 @@ class BaseModel:
             args: Variable length argument list.
             kwargs: Arbitrary keyword arguments.
         """
+         self.id = str(uuid.uuid4())
+         current_time = datetime.utcnow()
+         self.created_at = current_time
+         self.updated_at = current_time
+
         if kwargs:
             for key, value in kwargs.items():
                 if key != '__class__':
@@ -24,11 +29,6 @@ class BaseModel:
                         value = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
                     setattr(self, key, value)
         else:      
-            self.id = str(uuid.uuid4())
-            current_time = datetime.utcnow()
-            self.created_at = current_time
-            self.updated_at = current_time
-
             # Add a call to the method new(self) on storage
             models.storage.new(self)
 
