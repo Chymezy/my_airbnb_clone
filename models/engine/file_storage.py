@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 import json
-from os.path import exists
+import os
 
 class FileStorage:
     __file_path = "file.json"
@@ -25,14 +25,14 @@ class FileStorage:
             json.dump(serialized_objs, f)
 
     def reload(self):
-        """Deserializes the JSON file to __objects."""
-        if exists(self.__file_path):
-            with open(self.__file_path, 'r') as f:
+        if os.path.isfile(self.__file_path):
+            with open(self.__file_path, "r", encoding="utf-8") as file:
                 try:
-                    objs_dict = json.load(f)
-                    for key, obj_dict in objs_dict.items():
-                        class_name, obj_id = key.split('.')
-                        obj_class = eval(class_name)
-                        self.__objects[key] = obj_class(**obj_dict)
+                    stored_objects = json.load(file)
+                    for key, value in stored_objects.items():
+                        class_name, obj_id = key.split(".")
+                        obj_class = globals().get(class_name)
+                        if obj_class:
+                            self.__objects[key] = obj_class(**value)
                 except Exception as e:
                     print("Error reloading objects from JSON file:", e)

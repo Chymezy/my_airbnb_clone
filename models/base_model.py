@@ -17,10 +17,10 @@ class BaseModel:
             args: Variable length argument list.
             kwargs: Arbitrary keyword arguments.
         """
-         self.id = str(uuid.uuid4())
-         current_time = datetime.utcnow()
-         self.created_at = current_time
-         self.updated_at = current_time
+        self.id = str(uuid.uuid4())
+        current_time = datetime.utcnow()
+        self.created_at = current_time
+        self.updated_at = current_time
 
         if kwargs:
             for key, value in kwargs.items():
@@ -55,7 +55,7 @@ class BaseModel:
         return obj_dict
 
 if __name__ == "__main__":
-    all_objs = storage.all()
+    all_objs = models.storage.all()
     print("-- Reloaded objects --")
     for obj_id in all_objs.keys():
         obj = all_objs[obj_id]
@@ -67,3 +67,4 @@ if __name__ == "__main__":
     my_model.my_number = 89
     my_model.save()
     print(my_model)
+    print(models.storage.all())
