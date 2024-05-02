@@ -25,7 +25,7 @@ class BaseModel:
 
     def save(self):
         ''' saves creation and modification of instances '''
-        self.models.storage.save()
+        models.storage.save()
         self.updated_at = datetime.now()
 
     def to_dict(self):
