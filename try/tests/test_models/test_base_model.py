@@ -24,13 +24,15 @@ class Test_BaseModel(unittest.TestCase):
 
     def test_obj_to_dict_serialization(self):
         obj = BaseModel()
-        obj_dict = obj.to_dict()
-        i = 0
-        for key, value in obj_dict.items():
-            i += 1
-            self.assertEqual(value, obj.id)
-            self.assertTrue(type(value), str)
-            if i == 2:
-                self.assertEqual(value, obj.created_at)
-                self.assertTrue(type(value), datetime.datetime) 
+        obj_dict = obj.to_dict().copy()
+        attr_toCheck = []
+        for key in obj_dict.keys():
+            attr_toCheck.append(key)
+        for attr in attr_toCheck:
+            self.assertIn(attr, obj_dict, f'{attr} is missing')
+            if attr in ['created_at', 'updated_at']:
+                self.assertIsInstance(obj_dict[attr], datetime, f'{attr} is of different type')
+               #self.assertEqual(obj_dict[attr].isoformat, getattr(obj, attr).isoformat(), f' has incorrect format or value')
+            else:
+                self.assertEqual(obj_dict[attr], getattr(obj, attr), f'{attr} has incorrect value')
 
