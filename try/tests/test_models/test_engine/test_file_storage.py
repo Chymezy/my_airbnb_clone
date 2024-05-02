@@ -1,6 +1,7 @@
 #!/bin/bash/python3
 
 import json
+import unittest
 from models.base_model import BaseModel
 import os
 from models import storage
@@ -13,7 +14,7 @@ class Test_FileStorage(unittest.TestCase):
         obj = BaseModel(name='First Model')
         storage.new(obj)
         storage.save()
-        self.assertIsInstance(obj, storage.__objects[obj])
+        self.assertIn(obj.id, storage.all())
          
 
     

@@ -7,4 +7,20 @@
     "price": 2809,
     "__class__": "BaseModel"
   }
+}{
+  "BaseModel.6e030897-ee73-408b-9189-e2d238bc28e0": {
+    "id": "6e030897-ee73-408b-9189-e2d238bc28e0",
+    "created_at": "2024-05-02T12:28:18.274484",
+    "updated_at": "2024-05-02T12:28:18.274488",
+    "name": "First Model",
+    "__class__": "BaseModel"
+  }
+}{
+  "BaseModel.d97d36ce-987f-49df-9aee-5a33697c746a": {
+    "id": "d97d36ce-987f-49df-9aee-5a33697c746a",
+    "created_at": "2024-05-02T12:36:59.271620",
+    "updated_at": "2024-05-02T12:36:59.271628",
+    "name": "First Model",
+    "__class__": "BaseModel"
+  }
 }
