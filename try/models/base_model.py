@@ -1,3 +1,4 @@
+#!/bin/bash/python3
 
 import uuid
 from datetime import datetime
@@ -33,9 +34,10 @@ class BaseModel:
 
 if __name__ == "__main__":
     obj = BaseModel(name="First Model")
-    print(f'name: {obj.name}, \tcreated: {obj.created_at}, \tupdated: {obj.updated_at}')
-    print(obj)
-    for key, value in obj.items():
-        print(f'{obj[key]}: {obj[value]}')
-
-
+    # print(f'name: {obj.name}, \tcreated: {obj.created_at}, \tupdated: {obj.updated_at}')
+    holder = obj.to_dict()
+    i = 0
+    for key, value in holder.items():
+        i += 1
+        print(f'{type(value)}')
+    print("loop count:", i)
