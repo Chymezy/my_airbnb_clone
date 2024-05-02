@@ -32,7 +32,10 @@ class Test_BaseModel(unittest.TestCase):
             self.assertIn(attr, obj_dict, f'{attr} is missing')
             if attr in ['created_at', 'updated_at']:
                 self.assertIsInstance(obj_dict[attr], datetime, f'{attr} is of different type')
+                self.assertEqual(obj_dict[attr].isoformat(), getattr(obj, attr).isoformat(), f'{attr} has incorrect format or value')
                #self.assertEqual(obj_dict[attr].isoformat, getattr(obj, attr).isoformat(), f' has incorrect format or value')
+            elif attr == '__class__':
+                self.assertEqual(obj_dict[attr], obj.__class__.__name__, f'__class__ has incorrect value')
             else:
                 self.assertEqual(obj_dict[attr], getattr(obj, attr), f'{attr} has incorrect value')
 
