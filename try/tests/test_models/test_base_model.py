@@ -39,3 +39,9 @@ class Test_BaseModel(unittest.TestCase):
             else:
                 self.assertEqual(obj_dict[attr], getattr(obj, attr), f'{attr} has incorrect value')
 
+    def test_save(self):
+        ''' test if instance are saved adequately '''
+        obj = BaseModel(name='First model')
+        old_updated_at = obj.updated_at
+        obj.save()
+        self.assertNotEqual(obj.updated_at, old_updated_at)
