@@ -1,0 +1,10 @@
+{
+  "BaseModel.581aa823-9eae-40a4-9c4e-6591a2c409b0": {
+    "id": "581aa823-9eae-40a4-9c4e-6591a2c409b0",
+    "created_at": "2024-05-02T18:56:36.100803",
+    "updated_at": "2024-05-02T18:56:36.100816",
+    "name": "Air-Craft",
+    "price": 2809,
+    "__class__": "BaseModel"
+  }
+}

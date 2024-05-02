@@ -28,8 +28,8 @@ class BaseModel:
         ''' serilizes objects to dictionary '''
         obj = self.__dict__.copy()
         obj['__class__'] = self.__class__.__name__
-        obj['created_at'] = self.created_at
-        obj['updated_at'] = self.updated_at
+        obj['created_at'] = self.created_at.isoformat()
+        obj['updated_at'] = self.updated_at.isoformat()
         return obj
 
 if __name__ == "__main__":
