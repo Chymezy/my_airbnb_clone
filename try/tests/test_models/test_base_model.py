@@ -9,7 +9,7 @@ from models.base_model import BaseModel
 class Test_BaseModel(unittest.TestCase):
     def test_obj_creation(self):
         obj = BaseModel()
-        self.assertTrue(obj.id)
+        self.assertIsInstance(obj.id, str)
         self.assertNotEqual(obj.created_at, obj.updated_at)
         self.assertTrue(datetime.fromisoformat(obj.created_at.isoformat()))
         self.assertTrue(datetime.fromisoformat(obj.updated_at.isoformat()))
