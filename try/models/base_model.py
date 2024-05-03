@@ -37,11 +37,13 @@ class BaseModel:
         return obj
 
 if __name__ == "__main__":
-    obj = BaseModel(name="First Model")
+    obj = BaseModel(name="Benjamin Model")
     # print(f'name: {obj.name}, \tcreated: {obj.created_at}, \tupdated: {obj.updated_at}')
-    holder = obj.to_dict()
-    i = 0
-    for key, value in holder.items():
-        i += 1
-        print(f'{type(value)}')
-    print("loop count:", i)
+    # holder = obj.to_dict()
+    # i = 0
+    # for key, value in holder.items():
+    #     i += 1
+    #     print(f'{type(value)}')
+    # print("loop count:", i)
+    # print(obj.id)
+    obj.save()

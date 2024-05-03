@@ -1,4 +1,5 @@
 import json
+import os
 from models.base_model import BaseModel
 ''' This the storage model '''
 
@@ -23,8 +24,15 @@ class FileStorage:
 
         for obj in stored_obj.keys():
             serialized_obj[obj] = stored_obj[obj].to_dict()
-        with open(self.__file_path, 'a+', encoding='utf-8') as file:
-            json.dump(serialized_obj, file, indent=2)
+
+        if os.path.exists(self.__file_path):
+            with open(self.__file_path, 'a+', encoding='utf-8') as file:
+                json.dump(serialized_obj, file, indent=2)
+                file.write(',')
+        else:
+            with open(self.__file_path, 'a+', encoding='utf-8') as file:
+                json.dump(serialized_obj, file, indent=2)
+                file.write('\n')
     
     def reload(self):
         ''' deserializes json file into object dict '''
@@ -52,6 +60,7 @@ if __name__ == '__main__':
 
     print(store.all())
     store.save()
+    print(store.all())
 
                 
 
