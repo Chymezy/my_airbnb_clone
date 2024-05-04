@@ -6,16 +6,18 @@ import models
 
 class BaseModel:
     ''' root class upon other models inherit from '''
+
     def __init__(self, *args, **kwargs):
         self.id = str(uuid.uuid4())
         self.created_at = datetime.now()
         self.updated_at = datetime.now()
+
         if kwargs:
             for key, value in kwargs.items():
                 if key != '__class__':
                     if key in ('created_at', 'updated_at'):
                         value = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
-                setattr(self, key, value)
+                    setattr(self, key, value)
 
         models.storage.new(self)
     
@@ -36,14 +38,14 @@ class BaseModel:
         obj['updated_at'] = self.updated_at.isoformat()
         return obj
 
-if __name__ == "__main__":
-    obj = BaseModel(name="Benjamin Model")
-    # print(f'name: {obj.name}, \tcreated: {obj.created_at}, \tupdated: {obj.updated_at}')
-    # holder = obj.to_dict()
-    # i = 0
-    # for key, value in holder.items():
-    #     i += 1
-    #     print(f'{type(value)}')
-    # print("loop count:", i)
-    # print(obj.id)
-    obj.save()
+# if __name__ == "__main__":
+#     obj = BaseModel(name="Benjamin Model")
+#     # print(f'name: {obj.name}, \tcreated: {obj.created_at}, \tupdated: {obj.updated_at}')
+#     # holder = obj.to_dict()
+#     # i = 0
+#     # for key, value in holder.items():
+#     #     i += 1
+#     #     print(f'{type(value)}')
+#     # print("loop count:", i)
+#     # print(obj.id)
+#     obj.save()
