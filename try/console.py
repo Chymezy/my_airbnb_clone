@@ -43,28 +43,31 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** class doesn't exist **")
 
+#     show: Prints the string representation of an instance based on the class name and id. Ex: $ show BaseModel 1234-1234-1234.
+# If the class name is missing, print ** class name missing ** (ex: $ show)
+# If the class name doesn’t exist, print ** class doesn't exist ** (ex: $ show MyModel)
+# If the id is missing, print ** instance id missing ** (ex: $ show BaseModel)
+# If the instance of the class name doesn’t exist for the id, print ** no instance found ** (ex: $ show BaseModel 121212)
+    def do_show(self, line):
+        if not line:
+            print("** class name missing **")
+            return
         
+        approved_classes = ['BaseModel', 'User']
+        args = line.split()
+        class_name = args[0]
+        class_id = args[1]
+        class_types = []
+        if class_name in approved_classes:
+            class_type = globals().get(class_name)
+            if class_type is not None:
+                class_types.append(class_type)
+                return
+        else:
+            print("** class doesn't exist **")
+        if class_id:
+            pass
 
-
-                
-        #     if class_name and issubclass(obj_class, BaseModel):
-        #     if class_name in class_list:
-        #         obj = BaseModel()
-        #         obj.save()
-        #         print(obj.id)
-        #     else:
-        #         print("** class doesn't exist **")
-        # r = ['BaseModel', 'User']
-        # a = eval(r[0])
-        # print(type(a))       
-                
-                
-
-
-
- 
-        # instance = BaseModel()
-        # instance.save()
 
 
 
