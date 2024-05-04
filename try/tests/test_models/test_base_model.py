@@ -19,7 +19,7 @@ class Test_BaseModel(unittest.TestCase):
     def test_obj_str(self):
         ''' tests the string formating if it matches required output '''
         obj = BaseModel()
-        expected_str = f'[{obj.__class__.__name__}] ({obj.id}) {obj.__dict__}'
+        expected_str = f'[{obj.__class__.__name__}], ({obj.id}), {obj.__dict__}'
         self.assertEqual(str(obj), expected_str)
 
     def test_obj_to_dict_serialization(self):

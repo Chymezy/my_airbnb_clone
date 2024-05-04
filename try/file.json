@@ -1,19 +1,27 @@
 {
-  "BaseModel.11c73496-49ad-4776-a23b-3b1e7693403b": {
-    "id": "11c73496-49ad-4776-a23b-3b1e7693403b",
-    "created_at": "2024-05-03T08:19:23.660030",
-    "updated_at": "2024-05-03T08:19:23.660047",
-    "name": "Air-Craft",
-    "price": 2809,
+  "BaseModel.27946391-1dec-4fa5-8fdb-9328c772f4aa": {
+    "id": "27946391-1dec-4fa5-8fdb-9328c772f4aa",
+    "created_at": "2024-05-04T10:37:01.988215",
+    "updated_at": "2024-05-04T10:37:01.988232",
+    "__class__": "BaseModel"
+  },
+  "BaseModel.da472b28-9300-4912-85e4-54522be10cad": {
+    "id": "da472b28-9300-4912-85e4-54522be10cad",
+    "created_at": "2024-05-04T10:37:01.988525",
+    "updated_at": "2024-05-04T10:37:01.988531",
+    "__class__": "BaseModel"
+  },
+  "BaseModel.536715e0-9a7f-4b1c-869f-3d87309357b9": {
+    "id": "536715e0-9a7f-4b1c-869f-3d87309357b9",
+    "created_at": "2024-05-04T10:37:01.988771",
+    "updated_at": "2024-05-04T10:37:01.988777",
+    "__class__": "BaseModel"
+  },
+  "BaseModel.2c84f9c9-a705-4df2-ba0d-f2bbfb89de40": {
+    "id": "2c84f9c9-a705-4df2-ba0d-f2bbfb89de40",
+    "created_at": "2024-05-04T10:37:01.989047",
+    "updated_at": "2024-05-04T10:37:01.989064",
+    "name": "First model",
     "__class__": "BaseModel"
   }
-}{
-  "BaseModel.d8e763fe-b474-48f9-b6b0-58dcb83ea15e": {
-    "id": "d8e763fe-b474-48f9-b6b0-58dcb83ea15e",
-    "created_at": "2024-05-03T08:21:30.141876",
-    "updated_at": "2024-05-03T08:21:30.141895",
-    "name": "Air-Craft",
-    "price": 2809,
-    "__class__": "BaseModel"
-  }
-},
+}

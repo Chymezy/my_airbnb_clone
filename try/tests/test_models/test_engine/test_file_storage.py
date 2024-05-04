@@ -11,13 +11,14 @@ class Test_FileStorage(unittest.TestCase):
     
     def test_all(self):
         ''' test if all stored obj are retrieved '''
-        # obj = BaseModel(name='First Model')
-        # obj.save()
-        # self.assertIn(obj.id, storage.all())
+        obj = BaseModel(name='First Model')
+        obj.save()
+        self.assertIn(obj.id, storage.all())
 if __name__ == "__main__":
         obj = BaseModel(name='First Model')
         obj.save()
         print(obj.id)
+        
          
 
     

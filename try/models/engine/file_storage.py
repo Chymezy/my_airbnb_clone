@@ -4,7 +4,7 @@ from models.base_model import BaseModel
 ''' This the storage model '''
 
 class FileStorage:
-    __file_path = 'file.json'
+    __file_path = "file.json"
     __objects = {}
 
     def all(self):
@@ -25,28 +25,27 @@ class FileStorage:
         for obj in stored_obj.keys():
             serialized_obj[obj] = stored_obj[obj].to_dict()
 
-        if os.path.exists(self.__file_path):
-            with open(self.__file_path, 'a+', encoding='utf-8') as file:
+            with open(self.__file_path, 'w', encoding='utf-8') as file:
                 json.dump(serialized_obj, file, indent=2)
-                file.write(',')
-        else:
-            with open(self.__file_path, 'a+', encoding='utf-8') as file:
-                json.dump(serialized_obj, file, indent=2)
-                file.write('\n')
+
     
     def reload(self):
         ''' deserializes json file into object dict '''
-        with open(self.__file_path, 'r') as file:
+        if os.path.isfile(self.__file_path):
+            with open(self.__file_path, 'r', encoding='utf-8') as file:
 
-            try:
-                stored_obj = json.load(file)
-                for key, value in stored_obj.items():
-                    class_name, id = key.split('.')
-                    obj_class = globals().get(class_name)
-                    if obj_class:
-                        self.__objects[key] = obj_class(**value)
-            except Exception as e:
-                print("error reloading objects from JSON file:", e)
+                try:
+                    stored_obj = json.load(file)
+                    for key, value in stored_obj.items():
+                        class_name, id = key.split('.')
+                        obj_class = eval(class_name)
+                        obj_instance = obj_class(**obj_class)
+                        self.__objects[key] = obj_instance
+                except Exception as e:
+                    print("error reloading objects from JSON file:", e)
+                    # pass
+        else:
+            print("JSON file not found. no objects loaded")
 
 if __name__ == '__main__':
     store = FileStorage()
@@ -60,6 +59,7 @@ if __name__ == '__main__':
 
     print(store.all())
     store.save()
+    store.reload()
     print(store.all())
 
                 
