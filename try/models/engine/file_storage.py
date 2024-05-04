@@ -45,25 +45,3 @@ class FileStorage:
                 except Exception as e:
                     print("Error reloading objects from JSON file:", e)
 
-    
-
-if __name__ == '__main__':
-    store = FileStorage()
-    print(store.all())
-
-    obj1 = BaseModel(name="Air-Craft", price=2809)
- 
-
-    store.new(obj1)
-
-
-    print(store.all())
-    store.save()
-    store.reload()
-    print(store.all())
-
-                
-
-
-
-

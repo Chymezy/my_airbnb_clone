@@ -20,5 +20,52 @@
     "updated_at": "2024-05-04T17:29:27.859201",
     "name": "Programming is Crazzy!",
     "__class__": "BaseModel"
+  },
+  "BaseModel.a70c84aa-4c36-4ed3-baf4-c985d4419ecc": {
+    "id": "a70c84aa-4c36-4ed3-baf4-c985d4419ecc",
+    "created_at": "2024-05-04T17:44:35.250125",
+    "updated_at": "2024-05-04T17:44:35.250129",
+    "name": "Test Object",
+    "price": 100,
+    "__class__": "BaseModel"
+  },
+  "BaseModel.3f497792-fde7-491e-910d-9df37a1c693a": {
+    "id": "3f497792-fde7-491e-910d-9df37a1c693a",
+    "created_at": "2024-05-04T17:44:35.250406",
+    "updated_at": "2024-05-04T17:44:35.250415",
+    "name": "The patient dog does what again?",
+    "__class__": "BaseModel"
+  },
+  "BaseModel.ea1d2efe-4f72-4608-8f30-4717a176be45": {
+    "id": "ea1d2efe-4f72-4608-8f30-4717a176be45",
+    "created_at": "2024-05-04T17:44:35.251439",
+    "updated_at": "2024-05-04T17:44:35.251448",
+    "name": "Programming is Crazzy!",
+    "__class__": "BaseModel"
+  },
+  "BaseModel.fa3e284f-95ce-430d-9290-db9b33c49ce2": {
+    "id": "fa3e284f-95ce-430d-9290-db9b33c49ce2",
+    "created_at": "2024-05-04T17:44:49.734062",
+    "updated_at": "2024-05-04T17:44:49.734068",
+    "__class__": "BaseModel"
+  },
+  "BaseModel.0f8fa3d9-3630-4fbb-a08a-558cb098b825": {
+    "id": "0f8fa3d9-3630-4fbb-a08a-558cb098b825",
+    "created_at": "2024-05-04T17:44:49.734428",
+    "updated_at": "2024-05-04T17:44:49.734434",
+    "__class__": "BaseModel"
+  },
+  "BaseModel.7a8a2c36-ad97-425d-91a4-01b275f3385d": {
+    "id": "7a8a2c36-ad97-425d-91a4-01b275f3385d",
+    "created_at": "2024-05-04T17:44:49.734651",
+    "updated_at": "2024-05-04T17:44:49.734656",
+    "__class__": "BaseModel"
+  },
+  "BaseModel.cb456269-65df-49ba-a18a-003402187dd8": {
+    "id": "cb456269-65df-49ba-a18a-003402187dd8",
+    "created_at": "2024-05-04T17:44:49.734919",
+    "updated_at": "2024-05-04T17:44:49.734936",
+    "name": "First model",
+    "__class__": "BaseModel"
   }
 }
