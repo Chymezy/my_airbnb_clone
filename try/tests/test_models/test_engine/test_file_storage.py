@@ -1,24 +1,55 @@
 #!/bin/bash/python3
 
-import json
 import unittest
+from unittest.mock import patch, MagicMock
 from models.base_model import BaseModel
-import os
-from models import storage
+# from models import storage
+from models.engine.file_storage import FileStorage
+import json
 
-''' This a test cases for file storage class '''
-class Test_FileStorage(unittest.TestCase):
-    
-    def test_all(self):
-        ''' test if all stored obj are retrieved '''
-        obj = BaseModel(name='First Model')
+class TestFileStorage(unittest.TestCase):
+    """Test cases for the FileStorage class"""
+
+    def setUp(self):
+        """Set up the test case"""
+        self.storage = FileStorage()
+
+    def tearDown(self):
+        """Tear down the test case"""
+        self.storage = None
+
+    def test_new(self):
+        """Test adding a new object to storage"""
+        obj = BaseModel(name="Test Object", price=100)      
+        self.storage.new(obj)
+        self.assertIn(f"{obj.__class__.__name__}.{obj.id}", self.storage.all())
+
+    # def test_save(self):
+    #     """Test saving objects to the file"""
+    #     # obj  = BaseModel()
+    #     file_path = self.storage.__class__.__dict__.get('_FileStorage__file_path', 'file.json')
+    #     # storage.new(obj)
+    #     # storage.save()
+    #     # print(file_path)
+    #     with patch('builtins.open', create=True) as mock_open:
+    #         obj = BaseModel(name="Test Object", price=100)
+    #         self.storage.new(obj)
+    #         self.storage.save()
+    #         mock_open.assert_called_once_with(file_path, 'w', encoding='utf-8')
+    #         mock_open().write.assert_called_once()
+
+    def test_save(self):
+        """Test saving objects to the file"""
+        obj = BaseModel(name="Programming is Crazzy!")
         obj.save()
-        self.assertIn(obj.id, storage.all())
-if __name__ == "__main__":
-        obj = BaseModel(name='First Model')
-        obj.save()
-        print(obj.id)
+        file_path = self.storage.__class__.__dict__.get('_FileStorage__file_path', 'file.json')
+        with open(file_path, 'r', encoding='utf-8') as file:
+            data = json.load(file)
+        for key, value in data.items():
+            if key == 'id':
+                self.assertEqual(value, obj.id)
+
         
-         
+        
 
-    
+
