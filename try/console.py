@@ -20,29 +20,7 @@ class HBNBCommand(cmd.Cmd):
     
     def emptyline(self):
         """Do nothing on empty line."""
-        pass
-    
-#     create: Creates a new instance of BaseModel, saves it (to the JSON file) and prints the id. Ex: $ create BaseModel
-# If the class name is missing, print ** class name missing ** (ex: $ create)
-# If the class name doesn’t exist, print ** class doesn't exist ** (ex: $ create MyModel)
-    # def do_create(self, line):
-    #     ''' create model instance if class name is valid '''
-    #     if not line:
-    #         print("** class name missing **")
-    #     else:
-    #         args = line.split()
-    #         class_name = args[0]
-    #         class_types = []
-    #         # obj_class = globals().get(class_name)
-    #         approved_list = ['BaseModel', 'User']
-    #         for name in approved_list:
-    #             class_type = globals().get(name)
-    #             if class_type is not None:
-    #                 class_types.append(class_type)
-    #     print(class_type[0].split())
-
-    # Define a list of approved class names
-   
+        pass 
 
     def do_create(self, line):
         '''Create model instance if class name is valid'''
