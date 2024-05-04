@@ -24,20 +24,6 @@ class TestFileStorage(unittest.TestCase):
         self.storage.new(obj)
         self.assertIn(f"{obj.__class__.__name__}.{obj.id}", self.storage.all())
 
-    # def test_save(self):
-    #     """Test saving objects to the file"""
-    #     # obj  = BaseModel()
-    #     file_path = self.storage.__class__.__dict__.get('_FileStorage__file_path', 'file.json')
-    #     # storage.new(obj)
-    #     # storage.save()
-    #     # print(file_path)
-    #     with patch('builtins.open', create=True) as mock_open:
-    #         obj = BaseModel(name="Test Object", price=100)
-    #         self.storage.new(obj)
-    #         self.storage.save()
-    #         mock_open.assert_called_once_with(file_path, 'w', encoding='utf-8')
-    #         mock_open().write.assert_called_once()
-
     def test_save(self):
         """Test saving objects to the file"""
         obj = BaseModel(name="Programming is Crazzy!")
@@ -49,7 +35,18 @@ class TestFileStorage(unittest.TestCase):
             if key == 'id':
                 self.assertEqual(value, obj.id)
 
-        
+
+    def test_reload(self):
+        ''' test reloading of objects into __objects dict '''
+        obj = BaseModel(name="The patient dog does what again?")
+        obj.save()
+        self.storage.reload()
+        key = f'{obj.__class__.__name__}.{obj.id}'
+        obj_list = self.storage.all()
+        for data in obj_list.keys():
+            if data == key:
+                self.assertTrue(key)
+          
         
 
 
