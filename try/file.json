@@ -40,5 +40,75 @@
     "updated_at": "2024-05-05T17:48:05.851292",
     "josh": "testing my console",
     "__class__": "BaseModel"
+  },
+  "BaseModel.f6d24846-ad00-40ee-945a-d0c40f552617": {
+    "id": "f6d24846-ad00-40ee-945a-d0c40f552617",
+    "created_at": "2024-05-05T23:14:06.119939",
+    "updated_at": "2024-05-05T23:14:06.119962",
+    "josh": "testing my console",
+    "__class__": "BaseModel"
+  },
+  "BaseModel.a6e5f718-58dc-49eb-ad07-ebe638f62b1c": {
+    "id": "a6e5f718-58dc-49eb-ad07-ebe638f62b1c",
+    "created_at": "2024-05-05T23:16:13.056226",
+    "updated_at": "2024-05-05T23:16:13.056253",
+    "josh": "testing my console",
+    "__class__": "BaseModel"
+  },
+  "BaseModel.4402e26e-db64-4125-aec3-9ecb32de64d1": {
+    "id": "4402e26e-db64-4125-aec3-9ecb32de64d1",
+    "created_at": "2024-05-05T23:22:27.550878",
+    "updated_at": "2024-05-05T23:22:27.550896",
+    "josh": "testing my console",
+    "__class__": "BaseModel"
+  },
+  "BaseModel.13a2abcf-0862-4fac-9c6e-eec8db8beaba": {
+    "id": "13a2abcf-0862-4fac-9c6e-eec8db8beaba",
+    "created_at": "2024-05-05T23:23:48.635184",
+    "updated_at": "2024-05-05T23:23:48.635214",
+    "josh": "testing my console",
+    "__class__": "BaseModel"
+  },
+  "BaseModel.9ebeba74-ae0a-4445-9998-1a146e8e57e4": {
+    "id": "9ebeba74-ae0a-4445-9998-1a146e8e57e4",
+    "created_at": "2024-05-05T23:31:18.760036",
+    "updated_at": "2024-05-05T23:31:18.760064",
+    "josh": "testing my console",
+    "__class__": "BaseModel"
+  },
+  "BaseModel.85635d57-40fb-4976-9547-39d86f2b9cc3": {
+    "id": "85635d57-40fb-4976-9547-39d86f2b9cc3",
+    "created_at": "2024-05-05T23:35:16.781753",
+    "updated_at": "2024-05-05T23:35:16.781779",
+    "josh": "testing my console",
+    "__class__": "BaseModel"
+  },
+  "BaseModel.e7147c1c-d6db-495b-b1d8-840f36c920cc": {
+    "id": "e7147c1c-d6db-495b-b1d8-840f36c920cc",
+    "created_at": "2024-05-05T23:38:54.499162",
+    "updated_at": "2024-05-05T23:38:54.499185",
+    "josh": "testing my console",
+    "__class__": "BaseModel"
+  },
+  "User.5113d27f-5632-4ac5-9c77-e02414a1fa75": {
+    "id": "5113d27f-5632-4ac5-9c77-e02414a1fa75",
+    "created_at": "2024-05-05T23:40:59.659843",
+    "updated_at": "2024-05-05T23:40:59.659855",
+    "josh": "testing my console",
+    "first_name": "Betty",
+    "last_name": "Bar",
+    "email": "airbnb@mail.com",
+    "password": "root",
+    "__class__": "User"
+  },
+  "User.72266d71-4745-41bf-ae51-e8174ca18dbb": {
+    "id": "72266d71-4745-41bf-ae51-e8174ca18dbb",
+    "created_at": "2024-05-05T23:40:59.661180",
+    "updated_at": "2024-05-05T23:40:59.661209",
+    "josh": "testing my console",
+    "first_name": "John",
+    "email": "airbnb2@mail.com",
+    "password": "root",
+    "__class__": "User"
   }
 }
