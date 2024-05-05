@@ -44,12 +44,8 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** class doesn't exist **")
 
-#     show: Prints the string representation of an instance based on the class name and id. Ex: $ show BaseModel 1234-1234-1234.
-# If the class name is missing, print ** class name missing ** (ex: $ show)
-# If the class name doesn’t exist, print ** class doesn't exist ** (ex: $ show MyModel)
-# If the id is missing, print ** instance id missing ** (ex: $ show BaseModel)
-# If the instance of the class name doesn’t exist for the id, print ** no instance found ** (ex: $ show BaseModel 121212)
     def do_show(self, line):
+        ''' retrieve and display object data '''
         if not line:
             print("** class name missing **")
             return
