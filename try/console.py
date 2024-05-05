@@ -50,6 +50,7 @@ class HBNBCommand(cmd.Cmd):
         if valid_input:
             new_instance = globals()[class_name]()
             new_instance.save()
+            print(new_instance.id)
 
     def do_show(self, line):
         """Show command to print instance details"""
@@ -101,11 +102,76 @@ class HBNBCommand(cmd.Cmd):
                 # After input validation, display all objects
                 display_objects()
 
+    def do_update(self, line):
+        """Update command to update an instance attribute"""
+        args = line.split()
+        approved_classes = ['BaseModel']
+
+        ''' Validate input '''
+        valid_input, class_name, instance_id = self.validate_input(args, approved_classes, require_id=True)
+        if not valid_input:
+            return
+
+        ''' Check if the instance exists '''
+        key = f"{class_name}.{instance_id}"
+        all_objs = storage.all()
+        if key not in all_objs:
+            print("** no instance found **")
+            return
+        
+        ''' Check if attribute name and value are provided '''
+        if len(args) < 3:
+            print("** attribute name missing **")
+            return
+        if len(args) < 4:
+            print("** value missing **")
+            return
+        
+        attr_name = args[2]
+        attr_join = ' '.join(args[3:])  # Join attribute value if it contains spaces
+        if type(attr_join) is str:
+            attr_value = attr_join.strip('"')
+
+        ''' Check if attribute exists in the instance '''
+        obj = all_objs[key]
+        if not hasattr(obj, attr_name):
+            print("** attribute doesn't exist **")
+            return
+        
+        ''' Update the attribute and save '''
+        setattr(obj, attr_name, attr_value)
+        obj.save()
+
+    
+    
 
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     HBNBCommand().cmdloop()
+
+    
+    # Now we can proceed with the update logic...
+
+# update: Updates an instance based on the class name and id by adding or updating attribute (save the change into the JSON file). Ex: $ update BaseModel 1234-1234-1234 email "aibnb@mail.com".
+# Usage: update <class name> <id> <attribute name> "<attribute value>"
+# Only one attribute can be updated at the time
+# You can assume the attribute name is valid (exists for this model)
+# The attribute value must be casted to the attribute type
+# If the class name is missing, print ** class name missing ** (ex: $ update)
+# If the class name doesn’t exist, print ** class doesn't exist ** (ex: $ update MyModel)
+# If the id is missing, print ** instance id missing ** (ex: $ update BaseModel)
+# If the instance of the class name doesn’t exist for the id, print ** no instance found ** (ex: $ update BaseModel 121212)
+# If the attribute name is missing, print ** attribute name missing ** (ex: $ update BaseModel existing-id)
+# If the value for the attribute name doesn’t exist, print ** value missing ** (ex: $ update BaseModel existing-id first_name)
+# All other arguments should not be used (Ex: $ update BaseModel 1234-1234-1234 email "aibnb@mail.com" first_name "Betty" = $ update BaseModel 1234-1234-1234 email "aibnb@mail.com")
+# id, created_at and updated_at cant’ be updated. You can assume they won’t be passed in the update command
+# Only “simple” arguments can be updated: string, integer and float. You can assume nobody will try to update list of ids or datetime
+# Let’s add some rules:
+
+# You can assume arguments are always in the right order
+# Each arguments are separated by a space
+# A string argument with a space must be between double quote
+# The error management starts from the first argument to the last one
 
 
 #     def do_create(self, line):
