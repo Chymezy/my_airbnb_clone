@@ -78,6 +78,32 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print("** no instance found **")
 
+    def do_all(self, line):
+        ''' Displays all created objects '''
+        obj_list = []
+
+        ''' Function to display all objects '''
+        def display_objects():
+            all_objs = storage.all()
+            for obj in all_objs.values():
+                obj_str = f'{obj.__class__.__name__} ({obj.id}) {obj.__dict__}'
+                obj_list.append(obj_str)
+            print(obj_list)
+
+        if not line:    # if line is empty
+            display_objects() 
+        else:
+            ''' validate line if not empty '''
+            approved_classes = ['BaseModel']
+            args = line.split()
+            valid_input, _, _ = self.validate_input(args, approved_classes)
+            if valid_input:
+                # After input validation, display all objects
+                display_objects()
+
+
+
+
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
 

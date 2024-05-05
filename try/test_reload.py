@@ -1,22 +1,14 @@
-#!/usr/bin/python3
 from models import storage
 from models.base_model import BaseModel
 
 all_objs = storage.all()
-checks = '7c57982e-9312-40d4-b9c9-99731cd140d2'
-ids = []
-print("-- Reloaded objects --")
-for obj_id in all_objs.keys():
-    ids.append(obj_id.split('.')[1])
-    # obj = all_objs[obj_id]
-    # print(obj
-if checks in ids:
-    print("I found it")
-# print(ids)
+items = []
 
-# print("-- Create a new object --")
-# my_model = BaseModel()
-# my_model.name = "My_First_Model"
-# my_model.my_number = 89
-# my_model.save()
-# print(my_model)
+print("-- Reloaded objects --")
+for v in all_objs.values():
+    obj_str = f"[{v.__class__.__name__}] ({v.id}) {v.__dict__}"
+    items.append(obj_str)
+    # print(obj_str)
+
+# Now items contains all the formatted strings inside a list
+print(items)
