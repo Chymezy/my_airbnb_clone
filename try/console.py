@@ -2,10 +2,15 @@ import cmd
 from models.base_model import BaseModel
 from models import storage
 from models.user import User
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
+from models.city import City
+from models.state import State
 
 class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb) '
-    approved_classes = ['BaseModel', 'User']  # Define approved classes as a class variable
+    approved_classes = ['BaseModel', 'User', 'Amenity', 'City', 'Place', 'Review', 'State']  # Define approved classes as a class variable
 
     def do_quit(self, arg):
         """Quit command to exit the program."""
