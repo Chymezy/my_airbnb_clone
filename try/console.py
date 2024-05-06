@@ -140,9 +140,11 @@ class HBNBCommand(cmd.Cmd):
 
     def default(self, line):
         """Called on an input line when the command prefix is not recognized."""
+        if not line:
+            print("** command missing **")
+            return
         args = line.split()
         
-
         def validate_args(self, args): # User.all()
             if not args[0].split('.'): # False
                 print('** Invalid command **')
@@ -153,13 +155,14 @@ class HBNBCommand(cmd.Cmd):
             class_name, method  = args[0].split('.')
             return True, class_name, method
  
-        valid_input, class_name, method = validate_args(args, HBNBCommand.approved_classes)
-        if valid_input:
-            pass
-        arg1 = args[0].split('.') # check if arg1.split('.') is true
-        class_name = arg1[0] # set class_name = arg1[0]
-        method = arg1[1] # set method = arg1[1]
-        ''' check if method == all is true '''
+        valid_args, class_name, method = self.validate_args(args, HBNBCommand.approved_classes)
+        if valid_args:
+            ''' execute command '''
+            if method == 'all()':
+                self.do_all(class_name)
+            elif method == 'show()':
+                self.do_show(class_name)
+       
         # self.do_all(arg[0])
         # print
         # args = line.split('.')
