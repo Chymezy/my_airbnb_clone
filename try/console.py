@@ -138,5 +138,19 @@ class HBNBCommand(cmd.Cmd):
         setattr(obj, attr_name, attr_value)
         obj.save()
 
+    def default(self, line):
+        """Called on an input line when the command prefix is not recognized."""
+        args = line.split('.')
+        if len(args) == 2 and args[1] == 'all()':
+            class_name = args[0]
+            if class_name in HBNBCommand.approved_classes:
+                class_type = globals().get(class_name)
+                if class_type is not None:
+                    all_instances = class_type.all()
+                    for instance in all_instances:
+                        print(instance)
+                    return
+        super().default(line)
+
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
