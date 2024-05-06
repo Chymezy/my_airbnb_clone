@@ -45,6 +45,18 @@ class HBNBCommand(cmd.Cmd):
                 class_id = args[1] if len(args) > 1 else None # potential error point consider removing indexing case1
         return True, class_name, class_id
 
+    def validate_args(self, args): # User.all()
+        if not args:
+            print('** Invalid command **')
+            return False, None, None             
+        split_args = args[0].split('.')
+        if len(split_args) != 2:
+            print('** Invalid command entered **')
+            return False, None, None
+        class_name, method = split_args
+        return True, class_name, method
+
+
     def do_create(self, line):
         """Create command to create new instance"""
         args = line.split()
@@ -145,37 +157,23 @@ class HBNBCommand(cmd.Cmd):
             return
         args = line.split()
         
-        def validate_args(self, args): # User.all()
-            if not args[0].split('.'): # False
-                print('** Invalid command **')
-                return False, None, None             
-            if len(args[0].split('.', 1)) <= 0: # all() 
-                print('** Invalid command entered **')
-                return False, None, None
-            class_name, method  = args[0].split('.')
-            return True, class_name, method
+        # def validate_args(self, args): # User.all()
+        #     if not args[0].split('.'): # False
+        #         print('** Invalid command **')
+        #         return False, None, None             
+        #     if len(args[0].split('.', 1)) <= 0: # all() 
+        #         print('** Invalid command entered **')
+        #         return False, None, None
+        #     class_name, method  = args[0].split('.')
+        #     return True, class_name, method
  
-        valid_args, class_name, method = self.validate_args(args, HBNBCommand.approved_classes)
+        valid_args, class_name, method = self.validate_args(args)
         if valid_args:
             ''' execute command '''
             if method == 'all()':
                 self.do_all(class_name)
             elif method == 'show()':
-                self.do_show(class_name)
-       
-        # self.do_all(arg[0])
-        # print
-        # args = line.split('.')
-        # if len(args) == 2 and args[1] == 'all()':
-        #     class_name = args[0]
-        #     if class_name in HBNBCommand.approved_classes:
-        #         class_type = globals().get(class_name)
-        #         if class_type is not None:
-        #             all_instances = class_type.all()
-        #             for instance in all_instances:
-        #                 print(instance)
-        #             return
-        # super().default(line)
+                self.do_show(class_name)      
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
