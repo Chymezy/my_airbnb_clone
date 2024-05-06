@@ -54,7 +54,7 @@ class HBNBCommand(cmd.Cmd):
             new_instance.save()
             print(new_instance.id)
 
-    def do_show(self, line):
+    def do_show(self, line): #<class name>.show(<id>)
         """Show command to print instance details"""
         args = line.split()
         valid_input, class_name, class_id = self.validate_input(args, HBNBCommand.approved_classes, require_id=True)
@@ -66,7 +66,7 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print("** no instance found **")
 
-    def do_destroy(self, line):
+    def do_destroy(self, line): #<class name>.destroy(<id>).
         """Destroy command to delete instance"""
         args = line.split()
         valid_input, class_name, class_id = self.validate_input(args, HBNBCommand.approved_classes, require_id=True)
@@ -141,12 +141,27 @@ class HBNBCommand(cmd.Cmd):
     def default(self, line):
         """Called on an input line when the command prefix is not recognized."""
         args = line.split()
+        
+
+        def validate_args(self, args): # User.all()
+            if not args[0].split('.'): # False
+                print('** Invalid command **')
+                return False, None, None             
+            if len(args[0].split('.', 1)) <= 0: # all() 
+                print('** Invalid command entered **')
+                return False, None, None
+            class_name, method  = args[0].split('.')
+            return True, class_name, method
+ 
+        valid_input, class_name, method = validate_args(args, HBNBCommand.approved_classes)
+        if valid_input:
+            pass
         arg1 = args[0].split('.') # check if arg1.split('.') is true
         class_name = arg1[0] # set class_name = arg1[0]
         method = arg1[1] # set method = arg1[1]
         ''' check if method == all is true '''
         # self.do_all(arg[0])
-        print
+        # print
         # args = line.split('.')
         # if len(args) == 2 and args[1] == 'all()':
         #     class_name = args[0]
