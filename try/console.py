@@ -30,7 +30,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return False, None, None
         else:
-            class_name = args[0]
+            class_name = args[0] # potential error point consider removing indexing case1
             if class_name not in approved_classes:
                 print("** class doesn't exist **")
                 return False, None, None
@@ -39,10 +39,10 @@ class HBNBCommand(cmd.Cmd):
                 if class_type is None:
                     print("** class doesn't exist **")
                     return False, None, None
-                if require_id and len(args) < 2:
+                if require_id and len(args) < 2: # potential error point consider reviewing condition case1
                     print('** instance id missing **')
                     return False, None, None
-                class_id = args[1] if len(args) > 1 else None
+                class_id = args[1] if len(args) > 1 else None # potential error point consider removing indexing case1
         return True, class_name, class_id
 
     def do_create(self, line):
@@ -91,11 +91,11 @@ class HBNBCommand(cmd.Cmd):
                 obj_list.append(obj_str)
             print(obj_list)
 
-        if not line:    # if line is empty
-            display_objects() 
+        if not line:    # if line is empty case1
+            display_objects() # redundant point. consider removing. case1
         else:
             ''' validate line if not empty '''
-            args = line.split()
+            args = line.split() # potential error point split by '.' case 1
             valid_input, _, _ = self.validate_input(args, HBNBCommand.approved_classes)
             if valid_input:
                 # After input validation, display all objects
@@ -140,17 +140,24 @@ class HBNBCommand(cmd.Cmd):
 
     def default(self, line):
         """Called on an input line when the command prefix is not recognized."""
-        args = line.split('.')
-        if len(args) == 2 and args[1] == 'all()':
-            class_name = args[0]
-            if class_name in HBNBCommand.approved_classes:
-                class_type = globals().get(class_name)
-                if class_type is not None:
-                    all_instances = class_type.all()
-                    for instance in all_instances:
-                        print(instance)
-                    return
-        super().default(line)
+        args = line.split()
+        arg1 = args[0].split('.') # check if arg1.split('.') is true
+        class_name = arg1[0] # set class_name = arg1[0]
+        method = arg1[1] # set method = arg1[1]
+        ''' check if method == all is true '''
+        # self.do_all(arg[0])
+        print
+        # args = line.split('.')
+        # if len(args) == 2 and args[1] == 'all()':
+        #     class_name = args[0]
+        #     if class_name in HBNBCommand.approved_classes:
+        #         class_type = globals().get(class_name)
+        #         if class_type is not None:
+        #             all_instances = class_type.all()
+        #             for instance in all_instances:
+        #                 print(instance)
+        #             return
+        # super().default(line)
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
