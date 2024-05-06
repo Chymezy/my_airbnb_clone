@@ -166,14 +166,17 @@ class HBNBCommand(cmd.Cmd):
         #         return False, None, None
         #     class_name, method  = args[0].split('.')
         #     return True, class_name, method
+        valid_input, class_name, class_id = self.validate_input(args, HBNBCommand.approved_classes, require_id=True)
+        if valid_input:
+
  
-        valid_args, class_name, method = self.validate_args(args)
-        if valid_args:
-            ''' execute command '''
-            if method == 'all()':
-                self.do_all(class_name)
-            elif method == 'show()':
-                self.do_show(class_name)      
+            valid_args, _, method = self.validate_args(args)
+            if valid_args:
+                ''' execute command '''
+                if method == 'all()':
+                    self.do_all(class_name)
+                elif class_id and method == 'show()':
+                    self.do_show(class_name)      
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
