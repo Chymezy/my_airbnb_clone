@@ -91,16 +91,20 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print("** no instance found **")
 
-    def do_all(self, line):
+    def do_all(self, line): #User
         ''' Displays all created objects '''
         obj_list = []
+        class_name = line
 
         ''' Function to display all objects '''
-        def display_objects():
+        def display_objects(): 
             all_objs = storage.all()
             for obj in all_objs.values():
                 obj_str = f'{obj.__class__.__name__} ({obj.id}) {obj.__dict__}'
-                obj_list.append(obj_str)
+                if obj.__class__.__name__ == class_name:
+                    obj_list.append(obj_str)
+                else:
+                    obj_list.append(obj_str)
             print(obj_list)
 
         if not line:    # if line is empty case1
@@ -157,6 +161,7 @@ class HBNBCommand(cmd.Cmd):
             return
         args = line.split()
         
+        
         # def validate_args(self, args): # User.all()
         #     if not args[0].split('.'): # False
         #         print('** Invalid command **')
@@ -166,17 +171,19 @@ class HBNBCommand(cmd.Cmd):
         #         return False, None, None
         #     class_name, method  = args[0].split('.')
         #     return True, class_name, method
-        valid_input, class_name, class_id = self.validate_input(args, HBNBCommand.approved_classes, require_id=True)
-        if valid_input:
+        # valid_input, class_name, class_id = self.validate_input(args, HBNBCommand.approved_classes, require_id=True)
+        # if valid_input:
 
  
-            valid_args, _, method = self.validate_args(args)
-            if valid_args:
-                ''' execute command '''
-                if method == 'all()':
-                    self.do_all(class_name)
-                elif class_id and method == 'show()':
-                    self.do_show(class_name)      
+        valid_args, class_name, method = self.validate_args(args)
+        if valid_args:
+
+            ''' execute command '''
+            if method == 'all()':
+                self.do_all(class_name)
+                
+        #     elif class_id and method == 'show()':
+        #         self.do_show(class_name)      
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
