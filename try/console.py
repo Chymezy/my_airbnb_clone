@@ -65,8 +65,8 @@ class HBNBCommand(cmd.Cmd):
             obj_str = f'{obj.__class__.__name__} ({obj.id}) {obj.__dict__}'
             if obj.__class__.__name__ == class_name:
                 obj_list.append(obj_str)
-            else:
-                obj_list.append(obj_str)
+            # else:
+            #     obj_list.append(obj_str)
         print(obj_list)
 
     def do_create(self, line):
@@ -113,10 +113,10 @@ class HBNBCommand(cmd.Cmd):
         else:
             ''' validate line if not empty '''
             args = line.split() # potential error point split by '.' case 1
-            valid_input, _, _ = self.validate_input(args, HBNBCommand.approved_classes)
+            valid_input, class_name, _ = self.validate_input(args, HBNBCommand.approved_classes)
             if valid_input:
                 # After input validation, display all objects
-                display_objects()
+                self.display_objects(class_name)
 
     def do_update(self, line):
         """Update command to update an instance attribute"""
@@ -170,8 +170,8 @@ class HBNBCommand(cmd.Cmd):
             if method == 'all()':
                 self.do_all(class_name)
                 
-            elif class_id and method == 'show()':
-                self.do_show(class_name)      
+            # elif class_id and method == 'show()':
+            #     self.do_show(class_name)      
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
