@@ -4,6 +4,7 @@ import uuid
 from datetime import datetime
 import models 
 
+
 class BaseModel:
     ''' root class upon other models inherit from '''
 
@@ -39,14 +40,13 @@ class BaseModel:
         obj['updated_at'] = self.updated_at.isoformat()
         return obj
 
-# if __name__ == "__main__":
-#     obj = BaseModel(name="Benjamin Model")
-#     # print(f'name: {obj.name}, \tcreated: {obj.created_at}, \tupdated: {obj.updated_at}')
-#     # holder = obj.to_dict()
-#     # i = 0
-#     # for key, value in holder.items():
-#     #     i += 1
-#     #     print(f'{type(value)}')
-#     # print("loop count:", i)
-#     # print(obj.id)
-#     obj.save()
+if __name__ == "__main__":
+    my_list = []
+    obj = BaseModel(name="Benjamin Model")
+    # storage
+    obj.save()
+    # print(obj)
+    my_list.append(obj.to_dict())
+    print(my_list)
+    
+  

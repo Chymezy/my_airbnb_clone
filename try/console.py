@@ -62,7 +62,7 @@ class HBNBCommand(cmd.Cmd):
         obj_list = []
         all_objs = storage.all()
         for obj in all_objs.values():
-            obj_str = f'{obj.__class__.__name__} ({obj.id}) {obj.__dict__}'
+            obj_str = f'[{obj.__class__.__name__}] ({obj.id}) {obj.to_dict()}'
             if obj.__class__.__name__ == class_name:
                 obj_list.append(obj_str)
         print(obj_list)
