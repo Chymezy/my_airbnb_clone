@@ -65,7 +65,7 @@ class HBNBCommand(cmd.Cmd):
             if obj.__class__.__name__ == class_name:
                 obj_str = f"[{class_name}] ({obj.id}) {obj_dict}"
                 obj_list.append(obj_str)
-            else:
+            elif class_name == '':
                 obj_str = f"[{obj.__class__.__name__}] ({obj.id}) {obj_dict}"
                 obj_list.append(obj_str)
         print('[{}]'.format(', '.join(obj_list))) 
