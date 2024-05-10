@@ -62,18 +62,16 @@ class HBNBCommand(cmd.Cmd):
         all_objs = storage.all()
       
         for obj in all_objs.values():
-          
             obj_dict = obj.to_dict()
             if obj.__class__.__name__ == class_name:
-                
                 obj_str = f"[{class_name}] ({obj.id}) {obj_dict}"
                 obj_list.append(obj_str)
 
             elif class_name == '':
-                
                 obj_str = f"[{obj.__class__.__name__}] ({obj.id}) {obj_dict}"
                 obj_list.append(obj_str)
-        if 'count' in args:
+
+        if class_name and 'count' in args:
             return len(obj_list)
         else:
             print('[{}]'.format(', '.join(obj_list)))
@@ -174,15 +172,21 @@ class HBNBCommand(cmd.Cmd):
         
         valid_args, class_name, method = self.validate_args(args)
         if valid_args:
+        #     _, _, obj_id = self.validate_input(args, HBNBCommand.approved_classes, require_id=False)
 
             ''' execute command '''
             if method == 'all()':
                 self.do_all(class_name)
-
+            
             ''' instance count'''
             if method == 'count()':
+                if class_name not in HBNBCommand.approved_classes:
+                    print("** class does not exist **")
+                    return
                 count = self.display_objects(class_name, 'count')
                 print(count)  
 
+            # if obj_id and method == 'show({obj_id})':           #User.show("246c227a-d5c1-403d-9bc7-6a47bb9f0f68")
+            #     print("Josh wins")
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
