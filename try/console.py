@@ -57,15 +57,30 @@ class HBNBCommand(cmd.Cmd):
         return True, class_name, method
 
         
+    # def display_objects(self, class_name):
+    #     ''' Function to display all objects '''
+    #     obj_list = []
+    #     all_objs = storage.all()
+    #     for obj in all_objs.values():
+    #         obj_str = f'[{obj.__class__.__name__}] ({obj.id}) {obj.to_dict()}'
+    #         if obj.__class__.__name__ == class_name:
+    #             obj_list.append(obj_str)
+    #     print(obj_list)
     def display_objects(self, class_name):
         ''' Function to display all objects '''
         obj_list = []
         all_objs = storage.all()
         for obj in all_objs.values():
-            obj_str = f'[{obj.__class__.__name__}] ({obj.id}) {obj.to_dict()}'
             if obj.__class__.__name__ == class_name:
+                obj_dict = obj.to_dict()
+                obj_str = f"[{class_name}] ({obj.id}) {obj_dict}"
                 obj_list.append(obj_str)
-        print(obj_list)
+        print('[{}]'.format(', '.join(obj_list)))
+
+
+
+
+
 
 
     def do_create(self, line):

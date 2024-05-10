@@ -36,5 +36,13 @@
     "josh": "testing my console",
     "name": "Benjamin Model",
     "__class__": "BaseModel"
+  },
+  "BaseModel.6fb26aef-7460-4b10-9b24-6a6e67099a9f": {
+    "id": "6fb26aef-7460-4b10-9b24-6a6e67099a9f",
+    "created_at": "2024-05-10T20:12:33.403237",
+    "updated_at": "2024-05-10T20:12:33.403243",
+    "josh": "testing my console",
+    "name": "Benjamin Model",
+    "__class__": "BaseModel"
   }
 }
