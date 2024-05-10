@@ -90,11 +90,11 @@
     "josh": "testing my console",
     "__class__": "BaseModel"
   },
-  "Place.68a0b0e7-9aa8-4087-87a8-34ad6f7cd05b": {
-    "id": "68a0b0e7-9aa8-4087-87a8-34ad6f7cd05b",
-    "created_at": "2024-05-05T23:55:43.155850",
-    "updated_at": "2024-05-05T23:55:43.155877",
+  "User.0ca6db26-c371-49d1-ac3f-e713bb991931": {
+    "id": "0ca6db26-c371-49d1-ac3f-e713bb991931",
+    "created_at": "2024-05-09T16:10:06.964807",
+    "updated_at": "2024-05-09T16:10:06.964842",
     "josh": "testing my console",
-    "__class__": "Place"
+    "__class__": "User"
   }
 }

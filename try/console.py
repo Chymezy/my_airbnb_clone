@@ -65,9 +65,8 @@ class HBNBCommand(cmd.Cmd):
             obj_str = f'{obj.__class__.__name__} ({obj.id}) {obj.__dict__}'
             if obj.__class__.__name__ == class_name:
                 obj_list.append(obj_str)
-            # else:
-            #     obj_list.append(obj_str)
         print(obj_list)
+
 
     def do_create(self, line):
         """Create command to create new instance"""
@@ -168,10 +167,7 @@ class HBNBCommand(cmd.Cmd):
 
             ''' execute command '''
             if method == 'all()':
-                self.do_all(class_name)
-                
-            # elif class_id and method == 'show()':
-            #     self.do_show(class_name)      
+                self.do_all(class_name)   
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
