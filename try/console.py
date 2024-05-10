@@ -55,33 +55,20 @@ class HBNBCommand(cmd.Cmd):
             return False, None, None
         class_name, method = split_args
         return True, class_name, method
-
-        
-    # def display_objects(self, class_name):
-    #     ''' Function to display all objects '''
-    #     obj_list = []
-    #     all_objs = storage.all()
-    #     for obj in all_objs.values():
-    #         obj_str = f'[{obj.__class__.__name__}] ({obj.id}) {obj.to_dict()}'
-    #         if obj.__class__.__name__ == class_name:
-    #             obj_list.append(obj_str)
-    #     print(obj_list)
+   
     def display_objects(self, class_name):
         ''' Function to display all objects '''
         obj_list = []
         all_objs = storage.all()
         for obj in all_objs.values():
+            obj_dict = obj.to_dict()
             if obj.__class__.__name__ == class_name:
-                obj_dict = obj.to_dict()
                 obj_str = f"[{class_name}] ({obj.id}) {obj_dict}"
                 obj_list.append(obj_str)
-        print('[{}]'.format(', '.join(obj_list)))
-
-
-
-
-
-
+            else:
+                obj_str = f"[{obj.__class__.__name__}] ({obj.id}) {obj_dict}"
+                obj_list.append(obj_str)
+        print('[{}]'.format(', '.join(obj_list))) 
 
     def do_create(self, line):
         """Create command to create new instance"""
@@ -120,8 +107,9 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, line): #User
         ''' Displays all created objects '''
 
-        if not line:    # if line is empty case1
-            self.display_objects(self.__class__.__name__) # redundant point. consider removing. case1
+        if not line:    # if line is empty case1]
+
+            self.display_objects(line) # redundant point. consider removing. case1
         elif line == self.__class__.__name__:
             pass
         else:
