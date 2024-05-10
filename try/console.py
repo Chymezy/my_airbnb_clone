@@ -56,19 +56,29 @@ class HBNBCommand(cmd.Cmd):
         class_name, method = split_args
         return True, class_name, method
    
-    def display_objects(self, class_name):
+    def display_objects(self, class_name, *args):
         ''' Function to display all objects '''
         obj_list = []
         all_objs = storage.all()
+      
         for obj in all_objs.values():
+          
             obj_dict = obj.to_dict()
             if obj.__class__.__name__ == class_name:
+                
                 obj_str = f"[{class_name}] ({obj.id}) {obj_dict}"
                 obj_list.append(obj_str)
+
             elif class_name == '':
+                
                 obj_str = f"[{obj.__class__.__name__}] ({obj.id}) {obj_dict}"
                 obj_list.append(obj_str)
-        print('[{}]'.format(', '.join(obj_list))) 
+        if 'count' in args:
+            return len(obj_list)
+        else:
+            print('[{}]'.format(', '.join(obj_list)))
+       
+   
 
     def do_create(self, line):
         """Create command to create new instance"""
@@ -108,10 +118,8 @@ class HBNBCommand(cmd.Cmd):
         ''' Displays all created objects '''
 
         if not line:    # if line is empty case1]
+            self.display_objects(line)
 
-            self.display_objects(line) # redundant point. consider removing. case1
-        elif line == self.__class__.__name__:
-            pass
         else:
             ''' validate line if not empty '''
             args = line.split() # potential error point split by '.' case 1
@@ -164,13 +172,17 @@ class HBNBCommand(cmd.Cmd):
             return
         args = line.split()
         
-  
         valid_args, class_name, method = self.validate_args(args)
         if valid_args:
 
             ''' execute command '''
             if method == 'all()':
-                self.do_all(class_name)   
+                self.do_all(class_name)
+
+            ''' instance count'''
+            if method == 'count()':
+                count = self.display_objects(class_name, 'count')
+                print(count)  
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
