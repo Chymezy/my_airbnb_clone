@@ -49,5 +49,12 @@
     "updated_at": "2024-05-11T06:59:28.564558",
     "josh": "testing my console",
     "__class__": "State"
+  },
+  "User.0063b184-849d-4e19-bd6f-1ef702760ce8": {
+    "id": "0063b184-849d-4e19-bd6f-1ef702760ce8",
+    "created_at": "2024-05-11T14:19:57.230017",
+    "updated_at": "2024-05-11T14:19:57.230017",
+    "josh": "testing my console",
+    "__class__": "User"
   }
 }
