@@ -10,7 +10,7 @@ from models.state import State
 
 class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb) '
-    approved_classes = ['BaseModel', 'User', 'Amenity', 'City', 'Place', 'Review', 'State']  # Define approved classes as a class variable
+    approved_classes = ['BaseModel', 'User', 'Amenity', 'City', 'Place', 'Review', 'State']  
 
     def do_quit(self, arg):
         """Quit command to exit the program."""
@@ -30,7 +30,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return False, None, None
         else:
-            class_name = args[0] # potential error point consider removing indexing case1
+            class_name = args[0] 
             if class_name not in approved_classes:
                 print("** class doesn't exist **")
                 return False, None, None
@@ -39,29 +39,24 @@ class HBNBCommand(cmd.Cmd):
                 if class_type is None:
                     print("** class doesn't exist **")
                     return False, None, None
-                if require_id and len(args) < 2: # potential error point consider reviewing condition case1
+                if require_id and len(args) < 2: 
                     print('** instance id missing **')
                     return False, None, None
-                class_id = args[1] if len(args) > 1 else None # potential error point consider removing indexing case1
+                class_id = args[1] if len(args) > 1 else None 
         return True, class_name, class_id
 
-    def validate_args(self, args): # User.all() User.show("93023")
+    def validate_args(self, args): 
         if not args:
             print('** Invalid command **')
-            return False, None, None, None             
-        split_args = args[0].split('.') # ['User, 'show("09498")']
-        if len(split_args) != 2: #changed != 2
+            return False, None, None             
+        split_args = args[0].split('.')
+        if len(split_args) != 2:
             print('** Invalid command entered **')
-            return False, None, None, None
-        # if split_args[1][:-1].split('(')[1]:
-        #     class_id = split_args[1][:-1].split('(')[1]
-        # else:
-           # print('** instance not found **')
+            return False, None, None
         class_name, method = split_args
-        return True, class_name, method #, class_id
-    
+        return True, class_name, method
+   
     def display_objects(self, class_name, *args):
-        ''' Function to display all objects '''
         obj_list = []
         all_objs = storage.all()
       
@@ -80,10 +75,7 @@ class HBNBCommand(cmd.Cmd):
         else:
             print('[{}]'.format(', '.join(obj_list)))
        
-   
-
     def do_create(self, line):
-        """Create command to create new instance"""
         args = line.split()
         valid_input, class_name, _ = self.validate_input(args, HBNBCommand.approved_classes)
         if valid_input:
@@ -91,8 +83,7 @@ class HBNBCommand(cmd.Cmd):
             new_instance.save()
             print(new_instance.id)
 
-    def do_show(self, line): #<class name>.show(<id>)
-        """Show command to print instance details"""
+    def do_show(self, line):
         args = line.split()
         valid_input, class_name, class_id = self.validate_input(args, HBNBCommand.approved_classes, require_id=True)
         if valid_input:
@@ -103,8 +94,7 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print("** no instance found **")
 
-    def do_destroy(self, line): #<class name>.destroy(<id>).
-        """Destroy command to delete instance"""
+    def do_destroy(self, line):
         args = line.split()
         valid_input, class_name, class_id = self.validate_input(args, HBNBCommand.approved_classes, require_id=True)
         if valid_input:
@@ -116,35 +106,27 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print("** no instance found **")
 
-    def do_all(self, line): #User
-        ''' Displays all created objects '''
-
-        if not line:    # if line is empty case1]
+    def do_all(self, line):
+        if not line:
             self.display_objects(line)
-
         else:
-            ''' validate line if not empty '''
-            args = line.split() # potential error point split by '.' case 1
+            args = line.split() 
             valid_input, class_name, _ = self.validate_input(args, HBNBCommand.approved_classes)
             if valid_input:
-                # After input validation, display all objects
                 self.display_objects(class_name)
 
     def do_update(self, line):
-        """Update command to update an instance attribute"""
         args = line.split()
         valid_input, class_name, instance_id = self.validate_input(args, HBNBCommand.approved_classes, require_id=True)
         if not valid_input:
             return
 
-        ''' Check if the instance exists '''
         key = f"{class_name}.{instance_id}"
         all_objs = storage.all()
         if key not in all_objs:
             print("** no instance found **")
             return
         
-        ''' Check if attribute name and value are provided '''
         if len(args) < 3:
             print("** attribute name missing **")
             return
@@ -153,22 +135,19 @@ class HBNBCommand(cmd.Cmd):
             return
         
         attr_name = args[2]
-        attr_join = ' '.join(args[3:])  # Join attribute value if it contains spaces
+        attr_join = ' '.join(args[3:])
         if type(attr_join) is str:
             attr_value = attr_join.strip('"')
 
-        ''' Check if attribute exists in the instance '''
         obj = all_objs[key]
         if not hasattr(obj, attr_name):
             print("** attribute doesn't exist **")
             return
         
-        ''' Update the attribute and save '''
         setattr(obj, attr_name, attr_value)
         obj.save()
 
     def default(self, line):
-        """Called on an input line when the command prefix is not recognized."""
         if not line:
             print("** command missing **")
             return
@@ -176,28 +155,34 @@ class HBNBCommand(cmd.Cmd):
         
         valid_args, class_name, method = self.validate_args(args)
         if valid_args:
-        #     _, _, obj_id = self.validate_input(args, HBNBCommand.approved_classes, require_id=False)
-
-            ''' execute command '''
             if method == 'all()':
                 self.do_all(class_name)
-                return
             
-            ''' instance count'''
-            if method == 'count()':
+            elif method == 'count()':
                 if class_name not in HBNBCommand.approved_classes:
                     print("** class does not exist **")
                     return
                 count = self.display_objects(class_name, 'count')
-                print(count)
-                return  
+                print(count)  
 
-            # if class_id:
-            #     if method == f"show({class_id})":
-            #         print("Josh am here!")
-       
-            # print(obj_id)
-            # if obj_id and method == 'show({obj_id})':           #User.show("246c227a-d5c1-403d-9bc7-6a47bb9f0f68")
-            #     print("Josh wins")
+            elif method.startswith('show("') and method.endswith('")'):
+                obj_id = method.split('"')[1]
+                self.do_show(f"{class_name} {obj_id}")
+            
+            elif method.startswith('destroy("') and method.endswith('")'):
+                obj_id = method.split('"')[1]
+                self.do_destroy(f'{class_name} {obj_id}')
+            
+            elif method.startswith('update("') and method.endswith('")'):
+                args = method.split('"')[1:-1]  
+                if len(args) != 3:
+                    print("** Invalid command format for update **")
+                    return
+                else:
+                    update_id, attr_name, attr_value = args
+                    self.do_update(f"{class_name} {update_id} {attr_name} {attr_value}")
+            else:
+                print("** Invalid command entered **")
+
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
