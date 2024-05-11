@@ -45,17 +45,21 @@ class HBNBCommand(cmd.Cmd):
                 class_id = args[1] if len(args) > 1 else None # potential error point consider removing indexing case1
         return True, class_name, class_id
 
-    def validate_args(self, args): # User.all()
+    def validate_args(self, args): # User.all() User.show("93023")
         if not args:
             print('** Invalid command **')
-            return False, None, None             
-        split_args = args[0].split('.')
-        if len(split_args) != 2:
+            return False, None, None, None             
+        split_args = args[0].split('.') # ['User, 'show("09498")']
+        if len(split_args) != 2: #changed != 2
             print('** Invalid command entered **')
-            return False, None, None
+            return False, None, None, None
+        # if split_args[1][:-1].split('(')[1]:
+        #     class_id = split_args[1][:-1].split('(')[1]
+        # else:
+           # print('** instance not found **')
         class_name, method = split_args
-        return True, class_name, method
-   
+        return True, class_name, method #, class_id
+    
     def display_objects(self, class_name, *args):
         ''' Function to display all objects '''
         obj_list = []
@@ -177,6 +181,7 @@ class HBNBCommand(cmd.Cmd):
             ''' execute command '''
             if method == 'all()':
                 self.do_all(class_name)
+                return
             
             ''' instance count'''
             if method == 'count()':
@@ -184,8 +189,14 @@ class HBNBCommand(cmd.Cmd):
                     print("** class does not exist **")
                     return
                 count = self.display_objects(class_name, 'count')
-                print(count)  
+                print(count)
+                return  
 
+            # if class_id:
+            #     if method == f"show({class_id})":
+            #         print("Josh am here!")
+       
+            # print(obj_id)
             # if obj_id and method == 'show({obj_id})':           #User.show("246c227a-d5c1-403d-9bc7-6a47bb9f0f68")
             #     print("Josh wins")
 if __name__ == "__main__":
