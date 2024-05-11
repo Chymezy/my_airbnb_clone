@@ -171,22 +171,28 @@ class HBNBCommand(cmd.Cmd):
         args = line.split()
         
         valid_args, class_name, method = self.validate_args(args)
+        # print("Method:", method)  # Debugging print
+        # print("Args:", args)      # Debugging print
         if valid_args:
-        #     _, _, obj_id = self.validate_input(args, HBNBCommand.approved_classes, require_id=False)
-
-            ''' execute command '''
+            # execute command
             if method == 'all()':
                 self.do_all(class_name)
             
-            ''' instance count'''
-            if method == 'count()':
+            # instance count
+            elif method == 'count()':
                 if class_name not in HBNBCommand.approved_classes:
                     print("** class does not exist **")
                     return
                 count = self.display_objects(class_name, 'count')
                 print(count)  
 
-            # if obj_id and method == 'show({obj_id})':           #User.show("246c227a-d5c1-403d-9bc7-6a47bb9f0f68")
-            #     print("Josh wins")
+            # show instance details
+            elif method.startswith('show("') and method.endswith('")'):
+                obj_id = method.split('"')[1]
+                self.do_show(f"{class_name} {obj_id}")
+
+            else:
+                print("** Invalid command entered **")
+
 if __name__ == "__main__":
     HBNBCommand().cmdloop()

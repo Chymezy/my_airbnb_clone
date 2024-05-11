@@ -51,5 +51,19 @@
     "updated_at": "2024-05-10T20:31:41.231663",
     "josh": "testing my console",
     "__class__": "Place"
+  },
+  "State.cbcef4ff-7740-4625-b080-9b50ce6ee174": {
+    "id": "cbcef4ff-7740-4625-b080-9b50ce6ee174",
+    "created_at": "2024-05-11T06:19:28.488184",
+    "updated_at": "2024-05-11T06:19:28.488184",
+    "josh": "testing my console",
+    "__class__": "State"
+  },
+  "State.ad6c59c9-cf2c-4a7b-8f1a-da8a94ababb0": {
+    "id": "ad6c59c9-cf2c-4a7b-8f1a-da8a94ababb0",
+    "created_at": "2024-05-11T06:59:28.564558",
+    "updated_at": "2024-05-11T06:59:28.564558",
+    "josh": "testing my console",
+    "__class__": "State"
   }
 }
