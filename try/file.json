@@ -13,14 +13,6 @@
     "josh": "testing my console",
     "__class__": "User"
   },
-  "BaseModel.5ae5d585-43ad-4964-bbec-cd1800839696": {
-    "id": "5ae5d585-43ad-4964-bbec-cd1800839696",
-    "created_at": "2024-05-10T19:38:50.016090",
-    "updated_at": "2024-05-10T19:38:50.016101",
-    "josh": "testing my console",
-    "name": "Benjamin Model",
-    "__class__": "BaseModel"
-  },
   "BaseModel.094ab135-3c1a-4524-8e90-6a03faf67503": {
     "id": "094ab135-3c1a-4524-8e90-6a03faf67503",
     "created_at": "2024-05-10T19:41:01.863019",
@@ -33,14 +25,6 @@
     "id": "6ea6fdc3-4040-4aa7-bb4e-82924ddc43dd",
     "created_at": "2024-05-10T19:42:10.607950",
     "updated_at": "2024-05-10T19:42:10.607960",
-    "josh": "testing my console",
-    "name": "Benjamin Model",
-    "__class__": "BaseModel"
-  },
-  "BaseModel.6fb26aef-7460-4b10-9b24-6a6e67099a9f": {
-    "id": "6fb26aef-7460-4b10-9b24-6a6e67099a9f",
-    "created_at": "2024-05-10T20:12:33.403237",
-    "updated_at": "2024-05-10T20:12:33.403243",
     "josh": "testing my console",
     "name": "Benjamin Model",
     "__class__": "BaseModel"

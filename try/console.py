@@ -186,11 +186,14 @@ class HBNBCommand(cmd.Cmd):
                 count = self.display_objects(class_name, 'count')
                 print(count)  
 
-            # show instance details
+            # show instance details <class name>.destroy(<id>).
             elif method.startswith('show("') and method.endswith('")'):
                 obj_id = method.split('"')[1]
                 self.do_show(f"{class_name} {obj_id}")
-
+            
+            elif method.startswith('destroy("') and method.endswith('")'):
+                obj_id = method.split('"')[1]
+                self.do_destroy(f'{class_name} {obj_id}')
             else:
                 print("** Invalid command entered **")
 
