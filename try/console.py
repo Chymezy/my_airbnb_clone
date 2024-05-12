@@ -116,15 +116,7 @@ class HBNBCommand(cmd.Cmd):
                 self.display_objects(class_name)
 
     def do_update(self, class_name, instance_id, attr, attr_value): # User.update("1d2426c3-1568-4a89-932e-56f85ab6810b", "josh", "steven")a
-        # line = f'{update_id} {attr} {attr_val}'
-        # print(" ".join(line))
-        # args = line.split()
-        # print(args)
-        # args = line.split() -
-        # print('debug: ', args) -
-        # valid_input, class_name, instance_id = self.validate_input(args, HBNBCommand.approved_classes, require_id=True)
-        # if not valid_input:
-            # return
+      
         if class_name not in HBNBCommand.approved_classes:
             print("** class doesn't exist **")
             return
@@ -135,11 +127,11 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
             return
         
-        # if len(args) < 3:
+        
         if not attr:
             print("** attribute name missing **")
             return
-        # if len(args) < 4:
+       
         if not attr_value:
             print("** value missing **")
             return
@@ -158,17 +150,15 @@ class HBNBCommand(cmd.Cmd):
         obj.save()
 
     def default(self, line):
-        # print(" ".join(line))
+        
         if not line:
             print("** command missing **")
             return
-        # r = line.split()
-        # print(r[0].split(','))
+        
         args = line.replace(" ", '').split(' ')
         
         valid_args, class_name, method = self.validate_args(args)
-        # print(args)
-        # print(line)
+        
         if valid_args:
             if method == 'all()':
                 self.do_all(class_name)
@@ -190,32 +180,18 @@ class HBNBCommand(cmd.Cmd):
             
             elif method.startswith('update("') and method.endswith('")'):
                 args = method.split('"')[1:-1] # 0-4-7
-                # print(args)
-                # print(line)
                 update_id = args[0]
-                # print(update_id)
                 attr = args[2]
-                # print(attr)
                 attr_value = args[4]
-                # print(attr_value)
                 
                 if not update_id and attr and attr_value:
                     print("** Invalid command format for update **")
                     return
                 else:
-                    update_class = line.split('.')
-                    # update_id, attr_name, attr_value = args
+                    update_class = line.split('.')[0]
+                    print(update_class)
                     self.do_update(update_class, update_id, attr, attr_value)
-            # elif method.startswith('update("') and method.endswith('")'):
-            #     args = method[8:-2].split('", "')
-            #     # print(args[0].split(","))
-                  
-            #     if len(args) != 3:
-            #         print("** Invalid command format for update **")
-            #         return
-            #     else:
-            #         update_id, attr_name, attr_value = args
-            #         self.do_update(f"{class_name} {update_id} {attr_name} {attr_value}")
+            
 
             else:
                 print("** Invalid command entered **")
