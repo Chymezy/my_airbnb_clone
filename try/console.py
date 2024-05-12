@@ -115,14 +115,18 @@ class HBNBCommand(cmd.Cmd):
             if valid_input:
                 self.display_objects(class_name)
 
-    def do_update(self, line): # User.update("1d2426c3-1568-4a89-932e-56f85ab6810b", "josh", "steven")a
+    def do_update(self, class_name, instance_id, attr, attr_value): # User.update("1d2426c3-1568-4a89-932e-56f85ab6810b", "josh", "steven")a
         # line = f'{update_id} {attr} {attr_val}'
         # print(" ".join(line))
         # args = line.split()
         # print(args)
-        args = line.split()
-        valid_input, class_name, instance_id = self.validate_input(args, HBNBCommand.approved_classes, require_id=True)
-        if not valid_input:
+        # args = line.split() -
+        # print('debug: ', args) -
+        # valid_input, class_name, instance_id = self.validate_input(args, HBNBCommand.approved_classes, require_id=True)
+        # if not valid_input:
+            # return
+        if class_name not in HBNBCommand.approved_classes:
+            print("** class doesn't exist **")
             return
 
         key = f"{class_name}.{instance_id}"
@@ -131,24 +135,26 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
             return
         
-        if len(args) < 3:
+        # if len(args) < 3:
+        if not attr:
             print("** attribute name missing **")
             return
-        if len(args) < 4:
+        # if len(args) < 4:
+        if not attr_value:
             print("** value missing **")
             return
         
-        attr_name = args[2]
-        attr_join = ' '.join(args[3:])
-        if type(attr_join) is str:
-            attr_value = attr_join.strip('"')
+        # attr_name = args[2]
+        # attr_join = ' '.join(args[3:])
+        # if type(attr_value) is str:
+        #     attr_value = attr_join.strip('"')
 
         obj = all_objs[key]
-        if not hasattr(obj, attr_name):
+        if not hasattr(obj, attr):
             print("** attribute doesn't exist **")
             return
         
-        setattr(obj, attr_name, attr_value)
+        setattr(obj, attr, attr_value)
         obj.save()
 
     def default(self, line):
@@ -196,9 +202,10 @@ class HBNBCommand(cmd.Cmd):
                 if not update_id and attr and attr_value:
                     print("** Invalid command format for update **")
                     return
-                # else:
+                else:
+                    update_class = line.split('.')
                     # update_id, attr_name, attr_value = args
-                    # self.do_update(update_id, attr, attr_value)
+                    self.do_update(update_class, update_id, attr, attr_value)
             # elif method.startswith('update("') and method.endswith('")'):
             #     args = method[8:-2].split('", "')
             #     # print(args[0].split(","))
