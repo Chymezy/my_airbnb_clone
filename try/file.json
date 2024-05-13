@@ -9,8 +9,15 @@
   "BaseModel.60c19029-92b3-4ab3-a7ff-1bd6030b0524": {
     "id": "60c19029-92b3-4ab3-a7ff-1bd6030b0524",
     "created_at": "2024-05-13T21:03:27.654954",
-    "updated_at": "2024-05-13T21:15:35.418266",
-    "josh": "Iamupdatingadequately",
+    "updated_at": "2024-05-13T21:56:21.305518",
+    "josh": "I a m u p d a t i n g a d e q u a t e l y",
     "__class__": "BaseModel"
+  },
+  "State.c7e2eb13-ecf0-47f5-8ba8-e6b1ecb8d249": {
+    "id": "c7e2eb13-ecf0-47f5-8ba8-e6b1ecb8d249",
+    "created_at": "2024-05-13T21:31:05.133061",
+    "updated_at": "2024-05-13T21:31:05.133087",
+    "josh": "testing my console",
+    "__class__": "State"
   }
 }
