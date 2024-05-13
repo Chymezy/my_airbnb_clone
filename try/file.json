@@ -2,8 +2,15 @@
   "User.1d2426c3-1568-4a89-932e-56f85ab6810b": {
     "id": "1d2426c3-1568-4a89-932e-56f85ab6810b",
     "created_at": "2024-05-11T22:42:55.883276",
-    "updated_at": "2024-05-11T22:42:55.883309",
-    "josh": "testing my console",
+    "updated_at": "2024-05-13T21:01:23.195950",
+    "josh": "Blackbox",
     "__class__": "User"
+  },
+  "BaseModel.60c19029-92b3-4ab3-a7ff-1bd6030b0524": {
+    "id": "60c19029-92b3-4ab3-a7ff-1bd6030b0524",
+    "created_at": "2024-05-13T21:03:27.654954",
+    "updated_at": "2024-05-13T21:15:35.418266",
+    "josh": "Iamupdatingadequately",
+    "__class__": "BaseModel"
   }
 }
