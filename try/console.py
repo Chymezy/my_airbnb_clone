@@ -119,7 +119,7 @@ class HBNBCommand(cmd.Cmd):
                 self.display_objects(class_name)
 
     def do_update(self, class_name: str, instance_id: str, attr: str, attr_value: str) -> None:
-        print(attr_value)
+        # print(attr_value) #debugging print
         if class_name not in HBNBCommand.approved_classes:
             print(CLASS_DOES_NOT_EXIST)
             return
@@ -140,10 +140,12 @@ class HBNBCommand(cmd.Cmd):
             return
 
         # attr_value1 = attr_value.strip(' ')
-        attr_value_words = attr_value.split(' ')[0]
-        print(attr_value) #debugging print
-        print(attr_value_words) #debugging print
-        attr_value_spaced = ' '.join(attr_value_words)
+        # attr_value_words = attr_value.split(' ')[0]
+        
+        # print(attr_value) #debugging print
+        # print(attr_value_words) #debugging print
+        # attr_value_spaced = ' '.join(attr_value_words)
+        attr_value_spaced = ' '.join(attr_value.split())
         # attr_value_spaced = {word: "" for word in attr_value_words}
 
         obj = all_objs[key]
@@ -185,11 +187,11 @@ class HBNBCommand(cmd.Cmd):
 
             elif method.startswith('update("') and method.endswith('")'):
                 args = method.split('"')[1:-1]
-                print(args) #deugging print
+                # print(args) #deugging print
                 update_id = args[0]
                 attr = args[2]
                 attr_value = args[4]
-                print(attr_value) #debugging print
+                # print(attr_value) #debugging print
 
                 if not update_id and attr and attr_value:
                     print("** Invalid command format for update **")

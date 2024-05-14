@@ -1,0 +1,30 @@
+learning tmux
+-----------------
+1) tmux ---> to open tmux terminal
+2) ctrl+B d --> detach tmux
+3) tmux a ---> to go back to tmux terminal
+4) tmux new -s name-ur-terminal
+5) tmux ls ---> to list all running tmux
+6) tmux a -t name-or-index ---> takes you to ur desired tmux terminal
+7) tmux kill-session -t name-ur-terminal
+---------------------------------------------------------------------------
+window spliting in tmux 
+8) ctrl+B % ---> splits the window vertically
+9) ctrl+B " ---> splits horizontally
+
+Ctrl+b is the prefix key
+
+10) ctrl+b q ----> display the pane number and just select it
+11) ctrl+b Alt index-number --> rearrange the panes
+12) ctrl+b 
+13) ctrl+b c ---> add new window
+14) ctrl+b n  --> to jumb between windows
+15) ctrl+b ,  ---> to rename window
+16) c-b w   ---> 
+17) c-b w x ---> to kill selected window
+18) c-b &  --->
+19) tmux kill-server ---> will kill all tmux running
+
+To copy text efficiently in tmux, ~/.tmux.conf  file needs to created or modified with the following:
+set -g mouse on
+set -g mode-keys vi
