@@ -11,7 +11,7 @@ def create_connection():
     database_url
 
     ''' create access engine to database '''
-    engine = create_engine(database_url)
+    engine = create_engine(database_url, echo=True)
     return engine
 database_engine = create_connection()
 
