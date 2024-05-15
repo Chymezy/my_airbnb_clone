@@ -18,18 +18,18 @@ class Student(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String(100))
 
-''' create table in database. metadata collates ur table structure '''
-Base.metadata.create_all(engine)
+# ''' create table in database. metadata collates ur table structure '''
+# Base.metadata.create_all(engine)
 
-''' insert data into the created table '''
-new_student = Student(name='Joshua Benjamin')
-session.add(new_student)
-session.commit()
+# ''' insert data into the created table '''
+# new_student = Student(name='Joshua Benjamin')
+# session.add(new_student)
+# session.commit()
 
-''' retrieved data '''
-students = session.query(Student).all()
-for student in students:
-    print(student.id, student.name)
+# ''' retrieved data '''
+# students = session.query(Student).all()
+# for student in students:
+#     print(student.id, student.name)
     
 
 
