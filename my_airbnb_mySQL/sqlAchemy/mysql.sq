@@ -1,0 +1,6 @@
+/* UPDATE  company
+SET chaa = "08107160494"
+WHERE name = "Samuel Ude"; */
+
+INSERT INTO company (name, department, email)
+VALUES ("Grace Ogidi", "Accounting", "OGidi@accounting.com")
