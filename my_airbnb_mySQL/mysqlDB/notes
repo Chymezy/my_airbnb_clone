@@ -1,0 +1,33 @@
+sql project
+==============
+
+1) pull mysql image --> docker pull mysql:8.0
+2) create connection --> docker run -p 3306:3306 --name mysql -e MYSQL_ROOT_PASSWORD=<password> -d mysql:8.0
+3) checking process using mysql on port 3306 on hostmachine --> sudo lsof -i :3306
+4) kill the process --> sudo kill <process_id>
+5) rename existing mysql --> docker rename mysql josh-old-mysql
+6) repeat setup 2.
+7) docker exec -it mysql mysql -uroot -ppassword
+8) contaniner name --> my_container
+9) starting sql:
+	- docker start my_container
+	- docker exec -it my_container mysql -uroot -ppassword
+10) use this command to get container ip address --> docker inspect -f '{{.NetworkSettings.IPAddress}}' my_container
+NB: this useful when u want to run sql files hostmachine terminal ip address of container is require. --> cat 0-list_databases.sql | mysql -h<container_ip_address> -uroot -ppassword
+11) to delete docker container --> docker rm <container_id> or docker rm <container_name>
+12) to delete docker image --> docker rmi <image_id>
+NB: i changed my docker port to 3307
+
+
+
+SQL NOTE
+------------
+IF NOT EXISTS --> internally calls select commands
+IF EXISTS --> is the opposite 	
+mysql -u username -p <database_name> < script_name.sql --> command to run sql script
+
+to run sql file in docker from terminal
+-------------------------------------------
+copy file to docker --> docker cp ./script.sql sql_container:/script.sql
+
+

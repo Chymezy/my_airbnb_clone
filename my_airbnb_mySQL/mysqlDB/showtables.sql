@@ -1,0 +1,2 @@
+USE josh_db;
+SHOW TABLES;
