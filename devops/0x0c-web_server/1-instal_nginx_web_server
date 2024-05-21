@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+# update package
+sudo apt-get update -y
+
+# install nginx
+sudo apt-get install -y nginx
+
+# create a file containing hello world
+echo "Hello World!" > /var/www/html/index.html
+
+# restart nginx
+service nginx restart
+
+# ensure nginx is listen on port 80
+if netstat -tuln | grep ":80" > /dev/null; then
+    echo "nginx is listening on port 80"
+else
+    echo "nginx is not listening on port 80"
+fi
+
+# check if "hello world is servvd"
+response=curl(curl -s localhost)
+if [[ "$response" == *"Hello world!" ]]; then
+    echo "nginx is serving correct content"
+else
+    echo "nginx is not serving the correct content"
+    exit 1
+fi
+echo "nginx is successfully installed"
