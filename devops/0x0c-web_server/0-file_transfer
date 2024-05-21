@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # check if parameter count is 4
-if ["$#" -ne 4]; then
+if ["$#" -eq 4]; then
     echo "Usage: 0-file_transer PATH_TO_FILE IP USERNAME PATH_TO_SSH_KEY"
     exit 1
 fi
@@ -21,3 +21,4 @@ fi [$? -eq 0]; then
 else
     echo "File transfer failed"
 fi
+
