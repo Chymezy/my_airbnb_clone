@@ -1,30 +1,32 @@
 #!/usr/bin/env bash
+# This script installs and configures Nginx to serve 'Hello World' on port 80
 
-# update package
-sudo apt-get update -y
+if [ "$(id -u)" != "0" ]; then
+	exit 1
+fi
 
-# install nginx
-sudo apt-get install -y nginx
-
-# create a file containing hello world
+apt-get update -y
+apt-get install nginx -y
+ufw allow 'Nginx HTTP'
 echo "Hello World!" > /var/www/html/index.html
+rm -f /etc/nginx/sites-enabled/default
 
-# restart nginx
+cat << EOF > /etc/nginx/sites-available/default
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+
+    root /var/www/html;
+    index index.html;
+
+    server_name _;
+
+    location / {
+        try_files \$uri \$uri/ =404;
+    }
+}
+EOF
+
+ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
+nginx -t
 service nginx restart
-
-# ensure nginx is listen on port 80
-if netstat -tuln | grep ":80" > /dev/null; then
-    echo "nginx is listening on port 80"
-else
-    echo "nginx is not listening on port 80"
-fi
-
-# check if "hello world is servvd"
-response=curl(curl -s localhost)
-if [[ "$response" == *"Hello world!" ]]; then
-    echo "nginx is serving correct content"
-else
-    echo "nginx is not serving the correct content"
-    exit 1
-fi
-echo "nginx is successfully installed"
