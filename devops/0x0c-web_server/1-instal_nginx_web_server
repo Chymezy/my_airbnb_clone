@@ -1,16 +1,27 @@
 #!/usr/bin/env bash
 # This script installs and configures Nginx to serve 'Hello World' on port 80
 
-if [ "$(id -u)" != "0" ]; then
+# Check if the script is running as root
+if [ "$(id -u)"!= "0" ]; then
 	exit 1
 fi
 
-apt-get update -y
-apt-get install nginx -y
-ufw allow 'Nginx HTTP'
-echo "Hello World!" > /var/www/html/index.html
-rm -f /etc/nginx/sites-enabled/default
+# Update the package lists
+sudo apt-get update -y
 
+# Install Nginx
+sudo apt-get install nginx -y
+
+# Allow traffic on port 80
+sudo ufw allow 'Nginx HTTP'
+
+# Create the HTML page
+echo "Hello World!" > /var/www/html/index.html
+
+# Remove the default Nginx configuration file
+sudo rm -f /etc/nginx/sites-enabled/default
+
+# Create a new Nginx configuration file
 cat << EOF > /etc/nginx/sites-available/default
 server {
     listen 80 default_server;
@@ -27,6 +38,58 @@ server {
 }
 EOF
 
-ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
-nginx -t
-service nginx restart
+# Enable the new Nginx configuration file
+sudo ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
+
+# Test the Nginx configuration
+sudo nginx -t
+
+# Start the Nginx service
+sudo service nginx restart#!/usr/bin/env bash
+# This script installs and configures Nginx to serve 'Hello World' on port 80
+
+# Check if the script is running as root
+if [ "$(id -u)"!= "0" ]; then
+	exit 1
+fi
+
+# Update the package lists
+sudo apt-get update -y
+
+# Install Nginx
+sudo apt-get install nginx -y
+
+# Allow traffic on port 80
+sudo ufw allow 'Nginx HTTP'
+
+# Create the HTML page
+echo "Hello World!" > /var/www/html/index.html
+
+# Remove the default Nginx configuration file
+sudo rm -f /etc/nginx/sites-enabled/default
+
+# Create a new Nginx configuration file
+cat << EOF > /etc/nginx/sites-available/default
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+
+    root /var/www/html;
+    index index.html;
+
+    server_name _;
+
+    location / {
+        try_files \$uri \$uri/ =404;
+    }
+}
+EOF
+
+# Enable the new Nginx configuration file
+sudo ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
+
+# Test the Nginx configuration
+sudo nginx -t
+
+# Start the Nginx service
+sudo service nginx restart
