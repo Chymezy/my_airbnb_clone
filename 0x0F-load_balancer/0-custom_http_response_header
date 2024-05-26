@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+# check if user is root
+if [ "$(id -u)" != "0"]; then
+    echo "This script must be run as root" 1>&2
+    exit 1
+fi
+
+# install nginx
+apt-get update -y
+apt-get install nginx -y
+ufw allow 'HTTP Nginx'
+
+# create html page
+echo "Hello World!" > /var/www/html/index.html
+
+# create 404 error page
+echo "This page is error page" > /var/www/html/404.html
+
+# create nginx directives
+cat <<EOF > /etc/nginx/sites-available/default
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+
+    root /var/www/html;
+    index index.html;
+
+    server_name _;
+    add_header X-Served-By "$HOSTNAME";
+
+    location / {
+        try_files \$uri \$uri/ =404;
+    }
+
+    location /redirect_me {
+        return 301 https://github.com/chymezy;
+    }
+
+    error_page 404 /404.html;
+    location = /404.html {
+        internal;
+    }
+} 
+EOF
+ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
+nginx -t && service restart nginx
