@@ -1,5 +1,8 @@
 import json
 import os
+import sys
+project_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..'))
+sys.path.insert(0, project_dir)
 from models.base_model import BaseModel
 from models.user import User
 from models.place import Place
@@ -50,10 +53,15 @@ class FileStorage:
                 try:
                     stored_obj = json.load(file)
                     for key, value in stored_obj.items():
-                        class_name, id = key.split('.')
-                        obj_class = self.__class_mapping.get(class_name)
+                        class_name, id = key.split('.')         
+                        obj_class = self.__class_mapping.get(class_name) # obj = obj_class
                         if obj_class:
                             obj_instance = obj_class(**value)
                             self.__objects[key] = obj_instance
                 except Exception as e:
                     print("Error reloading objects from JSON file:", e)
+
+if __name__ == "__main__":
+    fs = FileStorage()
+    fs.reload()
+    print(fs.all())
